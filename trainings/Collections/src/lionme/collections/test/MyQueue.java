@@ -19,11 +19,23 @@ public class MyQueue<T>  {
 	}
 	
 	public T getQueueValue(){
-		return header.prev.value;
+		T oldValue = header.next.value;
+		if(header.next!=header){
+			size--;
+		}
+		header.next = header.next.next;
+		header.next.prev = header; 
+		return oldValue;
 	}
 	
 	public T getStackValue(){
-		return header.next.value;
+		T oldValue = header.prev.value;
+		if(header.prev!=header){
+			size--;
+		}
+		header.prev = header.prev.prev;
+		header.prev.next = header; 
+		return oldValue;
 	}
 	
 	private static class Elem <T> {
@@ -40,6 +52,24 @@ public class MyQueue<T>  {
 	public int getSize() {
 		return size;
 	}
+	
+	@Override
+	public String toString() {
+		StringBuffer s = new StringBuffer();
+		s.append("[");
+		Elem<T> e = header.next; 
+		while(e != header){
+			s.append(e.value.toString());
+			s.append(",");
+			e = e.next;
+		}
+		if(s.lastIndexOf(",")>=0){
+			s.deleteCharAt(s.lastIndexOf(","));
+		}
+		s.append("]");
+		return s.toString();
+	}
 
+	
 }
 

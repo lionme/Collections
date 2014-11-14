@@ -12,8 +12,27 @@ public class Main {
 		myQueue.add(6);
 		myQueue.add(3);
 		
+		//System.out.println(myQueue.getQueueValue());
+		//System.out.println(myQueue.getStackValue());
+		System.out.println(myQueue.toString()+" Size:" + myQueue.getSize());
 		System.out.println(myQueue.getQueueValue());
+		System.out.println(myQueue.toString()+" Size:" + myQueue.getSize());
 		System.out.println(myQueue.getStackValue());
+		System.out.println(myQueue.toString()+" Size:" + myQueue.getSize());
+		System.out.println(myQueue.getStackValue());
+		System.out.println(myQueue.toString()+" Size:" + myQueue.getSize());
+		System.out.println(myQueue.getStackValue());
+		System.out.println(myQueue.toString()+" Size:" + myQueue.getSize());
+		System.out.println(myQueue.getStackValue());
+		System.out.println(myQueue.toString()+" Size:" + myQueue.getSize());
+		System.out.println(myQueue.getStackValue());
+		System.out.println(myQueue.toString()+" Size:" + myQueue.getSize());
+		System.out.println(myQueue.getStackValue());
+		System.out.println(myQueue.toString()+" Size:" + myQueue.getSize());
+		System.out.println(myQueue.getStackValue());
+		System.out.println(myQueue.toString()+" Size:" + myQueue.getSize());
+		System.out.println(myQueue.getStackValue());
+		System.out.println(myQueue.toString()+" Size:" + myQueue.getSize());
 	}
 
 }
