@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="src" output="test-classes" path="integration_test"/>
+	<classpathentry kind="src" path="test"/>
+	<classpathentry kind="con" path="com.google.gwt.eclipse.core.GWT_CONTAINER"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="lib" path="war/WEB-INF/lib/jstl.jar"/>
+	<classpathentry kind="lib" path="war/WEB-INF/lib/org.springframework.beans-3.1.0.RC2.jar" sourcepath="D:/Distrib/SpringArchive/src/org.springframework.beans-sources-3.1.0.RC2.jar"/>
+	<classpathentry kind="lib" path="war/WEB-INF/lib/org.springframework.context.support-3.1.0.RC2.jar"/>
+	<classpathentry kind="lib" path="war/WEB-INF/lib/org.springframework.context-3.1.0.RC2.jar" sourcepath="D:/spring-framework-3.1.0.RC2/src/org.springframework.context-sources-3.1.0.RC2.jar"/>
+	<classpathentry kind="lib" path="war/WEB-INF/lib/org.springframework.core-3.1.0.RC2.jar" sourcepath="D:/Distrib/SpringArchive/src/org.springframework.core-sources-3.1.0.RC2.jar"/>
+	<classpathentry kind="lib" path="war/WEB-INF/lib/org.springframework.expression-3.1.0.RC2.jar"/>
+	<classpathentry kind="lib" path="war/WEB-INF/lib/org.springframework.instrument.tomcat-3.1.0.RC2.jar"/>
+	<classpathentry kind="lib" path="war/WEB-INF/lib/org.springframework.instrument-3.1.0.RC2.jar"/>
+	<classpathentry kind="lib" path="war/WEB-INF/lib/org.springframework.jdbc-3.1.0.RC2.jar" sourcepath="D:/Distrib/SpringArchive/dist/org.springframework.jdbc-3.1.0.RC2.jar"/>
+	<classpathentry kind="lib" path="war/WEB-INF/lib/org.springframework.transaction-3.1.0.RC2.jar" sourcepath="D:/Distrib/SpringArchive/src/org.springframework.transaction-sources-3.1.0.RC2.jar"/>
+	<classpathentry kind="lib" path="war/WEB-INF/lib/standard.jar"/>
+	<classpathentry kind="lib" path="war/WEB-INF/lib/spring-security-core-3.1.0.RELEASE.jar" sourcepath="D:/Distrib/spring_sequrity_3.1.0/spring-security-core-3.1.0.RELEASE-sources.jar"/>
+	<classpathentry kind="lib" path="war/WEB-INF/lib/org.springframework.web.servlet-3.1.0.RC2.jar"/>
+	<classpathentry kind="lib" path="war/WEB-INF/lib/org.springframework.web-3.1.0.RC2.jar" sourcepath="D:/Java_distrib/spring-security-3.1.0.RELEASE/spring-security-3.1.0.RELEASE/dist/spring-security-web-3.1.0.RELEASE-sources.jar"/>
+	<classpathentry kind="lib" path="war/WEB-INF/lib/asm-3.3.1.jar"/>
+	<classpathentry kind="lib" path="war/WEB-INF/lib/org.springframework.aop-3.1.0.RC2.jar" sourcepath="D:/spring-framework-3.1.0.RC2/src/org.springframework.aop-sources-3.1.0.RC2.jar"/>
+	<classpathentry kind="lib" path="war/WEB-INF/lib/org.springframework.asm-3.1.0.RC2.jar"/>
+	<classpathentry kind="lib" path="war/WEB-INF/lib/org.springframework.orm-3.1.0.RC2.jar"/>
+	<classpathentry kind="lib" path="war/WEB-INF/lib/commons-dbcp-1.4.jar"/>
+	<classpathentry kind="lib" path="war/WEB-INF/lib/mysql-connector-java-5.1.10-bin.jar"/>
+	<classpathentry kind="lib" path="war/WEB-INF/lib/commons-pool-1.4.jar"/>
+	<classpathentry kind="lib" path="war/WEB-INF/lib/mail.jar"/>
+	<classpathentry kind="lib" path="war/WEB-INF/lib/hibernate-validator-4.1.0.Final.jar"/>
+	<classpathentry kind="lib" path="war/WEB-INF/lib/validation-api-1.0.0.GA.jar"/>
+	<classpathentry kind="lib" path="war/WEB-INF/lib/log4j-1.2.16.jar"/>
+	<classpathentry kind="lib" path="war/WEB-INF/lib/aopalliance-1.0.jar"/>
+	<classpathentry kind="lib" path="war/WEB-INF/lib/aspectjrt-1.6.12.jar" sourcepath="D:/Java_distrib/aspectj/aspectjrt-1.6.12-sources.jar"/>
+	<classpathentry kind="lib" path="war/WEB-INF/lib/aspectjtools-1.6.12.jar" sourcepath="D:/Distrib/aspectj/aspectj-1.6.12-src.jar"/>
+	<classpathentry kind="lib" path="war/WEB-INF/lib/aspectjweaver-1.6.12.jar"/>
+	<classpathentry kind="lib" path="war/WEB-INF/lib/cglib-2.2.2.jar" sourcepath="C:/Users/DIMAS/.m2/repository/cglib/cglib/2.2.2/cglib-2.2.2-sources.jar"/>
+	<classpathentry kind="lib" path="war/WEB-INF/lib/org.springframework.aspects-3.1.0.RC2.jar"/>
+	<classpathentry kind="lib" path="war/WEB-INF/lib/gflot-2.4.0.jar"/>
+	<classpathentry kind="lib" path="war/WEB-INF/lib/c3p0-0.9.1.jar" sourcepath="C:/Users/Dimas/.m2/repository/c3p0/c3p0/0.9.1/c3p0-0.9.1-sources.jar"/>
+	<classpathentry kind="lib" path="war/WEB-INF/lib/jcl-over-slf4j-1.6.4.jar"/>
+	<classpathentry kind="lib" path="war/WEB-INF/lib/slf4j-api-1.6.4.jar"/>
+	<classpathentry kind="lib" path="war/WEB-INF/lib/slf4j-log4j12-1.6.4.jar"/>
+	<classpathentry kind="lib" path="war/WEB-INF/lib/spring-security-web-3.1.0.RELEASE.jar"/>
+	<classpathentry kind="lib" path="war/WEB-INF/lib/org.springframework.test-3.1.0.RC2.jar" sourcepath="D:/Distrib/SpringArchive/src/org.springframework.test-sources-3.1.0.RC2.jar"/>
+	<classpathentry kind="lib" path="war/WEB-INF/lib/mockito-all-1.9.5-rc1.jar"/>
+	<classpathentry kind="lib" path="war/WEB-INF/lib/ehcache-core-2.5.2.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
+	<classpathentry kind="output" path="war/WEB-INF/classes"/>
+</classpath>

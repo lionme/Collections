@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop" 
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+            http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+            http://www.springframework.org/schema/context
+            http://www.springframework.org/schema/context/spring-context-3.0.xsd
+            http://www.springframework.org/schema/aop 
+         	http://www.springframework.org/schema/aop/spring-aop-3.0.xsd">
+
+	<!-- The GWTHandler allows you to quickly map multiple RPC service beans 
+		to different URLs very similar to the way Spring's SimpleUrlHandlerMapping 
+		maps URLs to controllers. The mapped beans are internally wrapped into GWTRPCServiceExporter 
+		instances, with the notable difference that you cannot specify a service 
+		interface in the configuration and the service beans must implement the RemoteService 
+		interface (as a matter of fact there is a workaround even for that by providing 
+		your own implementation of a RPCServiceExporter - interested readers please 
+		consult the javadocs for GWTHandler). See 3.2 Publishing multiple beans - 
+		GWTHandler http://gwt-widget.sourceforge.net/?q=node/54 -->
+
+	<!-- If you wanna research further about annotation support with GWT Handler. 
+		See http://groups.google.com/group/gwt-sl/browse_thread/thread/f563b200aa0af307# -->
+
+	<!-- Or create our own implementation: Seehttp://groups.google.com/group/gwt-sl/msg/3677e59c4a7c2dee -->
+	
+	<!-- Enables logging for remote service calls implementation classes. -->
+	<context:component-scan base-package="com.crediteuropebank.vacationsmanager.logging" />
+	
+	<!-- Enable configuring AOP using annotations. Necessary for logging aspect to work. -->
+	<aop:aspectj-autoproxy />
+
+	<!-- A GWT Spring beans (RPC services implementations) -->
+	
+	 <bean id="usersService" class="com.crediteuropebank.vacationsmanager.server.service.UsersServiceImpl"
+	 		autowire="byType">
+	 	<!-- <property name="userDAO" ref="jdbcUserDAO" />
+	 	<property name="validationUtil" ref="validationUtil"/> -->
+	 </bean>
+	 
+	<bean id="vacationsService" class="com.crediteuropebank.vacationsmanager.server.service.VacationsServiceImpl"
+			autowire="byType">
+<!-- 	 	<property name="vacationDAO" ref="jdbcVacationDAO" />
+	 	<property name="approvalManager" ref="approvalManager"/> -->
+	 </bean>
+	 
+	 <bean id="approvalService" class="com.crediteuropebank.vacationsmanager.server.service.ApprovalServiceImpl"
+	 		autowire="byType">
+	 	<!-- <property name="approvalDAO" ref="jdbcApprovalDAO" />
+	 	<property name="approvalManager" ref="approvalManager"/>
+	 	<property name="userService" ref="usersService"/> -->
+	 </bean>
+	 
+	 <bean id="roleService" class="com.crediteuropebank.vacationsmanager.server.service.RoleServiceImpl"
+	 		autowire="byType">
+	 	<!-- <property name="approvalDAO" ref="jdbcApprovalDAO" />
+	 	<property name="approvalManager" ref="approvalManager"/>
+	 	<property name="userService" ref="usersService"/> -->
+	 </bean>
+	 
+	 <bean id="sessionService" class="com.crediteuropebank.vacationsmanager.server.service.SessionServiceImpl"
+	 		autowire="byType"/>
+	 		
+	 <bean id="holidayDaysService" class="com.crediteuropebank.vacationsmanager.server.service.HolidayDaysServiceImpl"
+	 		autowire="byType"/>
+
+	<!-- A Spring bean -->
+	<!-- <bean id="springService" class="com.dimasco.springgwt.service.SpringService" /> -->
+
+	<!-- The GWT handler. Watch out the mappings! -->
+ 	<bean class="org.gwtwidgets.server.spring.GWTHandler">
+		<property name="mappings">
+			<map>
+				<entry key="/users" value-ref="usersService"/>
+				<entry key="/vacations" value-ref="vacationsService"/>
+				<entry key="/approval" value-ref="approvalService"/>
+				<entry key="/role" value-ref="roleService"/>
+				<entry key="/session" value-ref="sessionService"/>
+				<entry key="/holidayDays" value-ref="holidayDaysService"/>
+			</map>
+		</property>
+	</bean> 
+
+</beans>

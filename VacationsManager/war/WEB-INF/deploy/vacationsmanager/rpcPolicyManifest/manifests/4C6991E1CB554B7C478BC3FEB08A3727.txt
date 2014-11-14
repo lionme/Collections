@@ -1,0 +1,2 @@
+serviceClass: com.crediteuropebank.vacationsmanager.client.service.UsersService
+path: DFBCE7D76399B8C3CC87701E3E95DAE5.gwt.rpc

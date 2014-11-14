@@ -1,0 +1,2 @@
+serviceClass: com.crediteuropebank.vacationsmanager.client.service.HolidayDaysService
+path: 41D71BAD6AB33707730879A23159B106.gwt.rpc

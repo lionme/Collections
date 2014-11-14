@@ -1,0 +1,16 @@
+.dataGridHoveredRow {
+  cursor: pointer;
+  cursor: hand; 
+ /*  background-color: blue; */
+}
+ .dataGridSelectedRow {
+  background: #A9ACB0;
+  overflow: hidden;
+  /* color: white;
+  height: auto;
+  overflow: auto; */
+}
+
+.dataGridSelectedRowCell {
+  border: selectionBorderWidth solid #9C9DA0;
+}

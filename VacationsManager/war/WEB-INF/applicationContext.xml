@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc" 
+	xmlns:aop="http://www.springframework.org/schema/aop" 
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:cache="http://www.springframework.org/schema/cache"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+            http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+            http://www.springframework.org/schema/context
+            http://www.springframework.org/schema/context/spring-context-3.0.xsd
+         http://www.springframework.org/schema/mvc 
+         http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd
+         http://www.springframework.org/schema/aop 
+         http://www.springframework.org/schema/aop/spring-aop-3.0.xsd
+         http://www.springframework.org/schema/tx
+		 http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
+		 http://www.springframework.org/schema/cache 
+		 http://www.springframework.org/schema/cache/spring-cache.xsd">
+	
+	<!-- This is the main spring configuration file -->
+	
+	<!-- <import resource="spring-security.xml"/> -->
+	
+	<!-- Configure Spring's to get properties from files  -->
+	<bean id="properties"
+		class="org.springframework.context.support.PropertySourcesPlaceholderConfigurer">
+		<property name="locations">
+			<list>
+				<value>classpath:db.properties</value>
+				<value>classpath:mail.properties</value>
+				<value>classpath:vacations.properties</value>
+			</list>
+		</property>
+		<!-- <property name="ignoreUnresolvablePlaceholders" value="true" /> -->
+	</bean>
+	
+	<!-- Enable configuring AOP using annotations -->
+	<aop:aspectj-autoproxy />
+
+	<!-- Activates various annotations to be detected in bean classes -->
+	<context:annotation-config />
+
+	<!-- Scans the classpath for annotated components that will be auto-registered 
+		as Spring beans. For example @Controller and @Service. Make sure to set the 
+		correct base-package -->
+	<context:component-scan base-package="com.crediteuropebank.vacationsmanager.server" />
+	
+	<context:component-scan base-package="com.crediteuropebank.vacationsmanager.logging" />
+	
+	<!-- <context:component-scan base-package="com.crediteuropebank.vacationsmanager.dblogging" /> -->
+
+	<!-- Configures the annotation-driven Spring MVC Controller programming 
+		model. Note that, with Spring 3.0, this tag works in Servlet MVC only! Commented 
+		out because of conflict with GWTHandler Instead we declare the elements declaratively! -->
+	<!-- <mvc:annotation-driven /> -->
+
+	<!-- This allows us to use @Controller and @Service annotations -->
+	<bean
+		class="org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping" />
+
+	<!-- Commented out because of conflict with GWTHandler. You lost @ResponseBody, 
+		@RequestBody, @PathVariable <bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter"> 
+		<property name="webBindingInitializer"> <bean class="org.springframework.web.bind.support.ConfigurableWebBindingInitializer"/> 
+		</property> <property name="messageConverters"> <list> <bean class="org.springframework.http.converter.ByteArrayHttpMessageConverter" 
+		/> <bean class="org.springframework.http.converter.StringHttpMessageConverter" 
+		/> <bean class="org.springframework.http.converter.FormHttpMessageConverter" 
+		/> <bean class="org.springframework.http.converter.xml.SourceHttpMessageConverter" 
+		/> </list> </property> </bean> -->
+
+	<!-- Not really needed but it's part of the mvc:annotation-driven tag -->
+	<bean id="conversion-service"
+		class="org.springframework.format.support.FormattingConversionServiceFactoryBean" />
+
+ 	<!-- Configure data source -->
+	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
+		<property name="driverClass" value="${jdbc.driverClassName}" />
+		<property name="jdbcUrl" value="${jdbc.url}" />
+		<property name="user" value="${jdbc.username}" />
+		<property name="password" value="${jdbc.password}" />
+		<property name="minPoolSize" value="3"/>
+		<property name="maxPoolSize" value="15"/>
+		<property name="debugUnreturnedConnectionStackTraces" value="true"/>
+	</bean>
+
+	<!-- Configure JdbcTemplate -->
+	<bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+		<constructor-arg ref="dataSource" />
+	</bean>
+
+	<!-- Configure mail sender -->
+	<bean id="javaMailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+		<property name="host" value="${mail.host}" />
+		<property name="port" value="${mail.port}" />
+		<property name="username" value="${mail.username}" />
+		<property name="password" value="${mail.password}" />
+		<property name="protocol" value="smtp" />
+		<property name="javaMailProperties">
+			<props>
+				<prop key="mail.smtp.auth">true</prop>
+				<prop key="mail.smtp.starttls.enable">true</prop>
+				<prop key="mail.smtp.timeout">${mail.timeout}</prop>
+			</props>
+		</property>
+	</bean> 
+
+	<!-- Define the validator -->
+	<bean id="validator" class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean" />
+	
+	<!-- Define the transaction manager -->	
+	<bean id="txManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+    	<property name="dataSource" ref="dataSource"/>
+  	</bean>
+  	
+  	<!-- Defines that we will use Spring declarative transaction management driven by annotations. -->
+  	<tx:annotation-driven transaction-manager="txManager"/>
+  	
+  	<!-- Defines that we will use Spring caching functionality driven by annotations. -->
+  	<!-- Comment this line if you want to turn off caching in application -->
+  	<cache:annotation-driven/>
+  	
+  	<!-- Defines cache manager. -->
+  	<bean id="cacheManager" class="org.springframework.cache.ehcache.EhCacheCacheManager" p:cacheManager-ref="ehCache"/>
+ 
+	<!-- Ehcache library setup -->
+	<bean id="ehCache" class="org.springframework.cache.ehcache.EhCacheManagerFactoryBean" p:config-location="classpath:ehcache.xml"/>
+   	
+</beans>

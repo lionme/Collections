@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://java.sun.com/xml/ns/javaee 
+              http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+         version="2.5"
+         xmlns="http://java.sun.com/xml/ns/javaee">
+
+	<!-- The list of files that will automatically be loaded after start of the application. -->
+	<welcome-file-list>
+		<welcome-file>VacationsManager.jsp</welcome-file>
+	</welcome-file-list>
+
+	<!-- This context parameter defines all Spring config files used by application. This files
+	will be loaded during start of the application -->
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>/WEB-INF/spring-security.xml, /WEB-INF/applicationContext.xml</param-value>
+	</context-param>
+	<!-- This context parameter defines the path to the log4j config file. -->
+	<context-param>
+		<param-name>log4jConfigLocation</param-name>
+		<param-value>/WEB-INF/classes/log4j-myapp.properties</param-value>
+	</context-param>
+	<!-- This context param holds the path to the web app root on server -->
+	<context-param>
+  		<param-name>webAppRootKey</param-name>
+  		<param-value>webAppRoot</param-value>
+	</context-param>
+
+	<!-- The Spring Security Filter Chain -->
+	<filter>
+		<filter-name>springSecurityFilterChain</filter-name>
+		<filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+	</filter>
+	<!-- Pay attention to the url-pattern -->
+	<filter-mapping>
+		<filter-name>springSecurityFilterChain</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+	
+	<!-- This listener is necessary to enable log4j logging -->
+	<listener>
+		<listener-class>org.springframework.web.util.Log4jConfigListener</listener-class>
+	</listener>
+	
+	<!-- Context loader listener -->
+	<listener>
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+	</listener>
+	
+	<!-- This listener is necessary for correct work of concurrent session control 
+	with Spring Security -->
+	<listener>
+    	<listener-class>
+      		org.springframework.security.web.session.HttpSessionEventPublisher
+    	</listener-class>
+ 	 </listener>
+	
+	<!-- Front Controller for all GWT Spring based servlets -->
+	<servlet>
+		<servlet-name>gwt</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+
+	<!-- Front Controller for all Spring based servlets -->
+	<servlet>
+		<servlet-name>spring</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+
+	<!-- Don't forget to declare a gwt-servlet.xml -->
+	<servlet-mapping>
+		<servlet-name>gwt</servlet-name>
+		<url-pattern>/vacationsmanager/rpc/*</url-pattern>
+	</servlet-mapping>
+
+	<!-- Don't forget to declare a spring-servlet.xml -->
+	<servlet-mapping>
+		<servlet-name>spring</servlet-name>
+		<url-pattern>/myapp/*</url-pattern>
+	</servlet-mapping>
+	
+	<!-- Set session's timeout (in minutes) -->
+	<session-config>
+      <session-timeout>10</session-timeout> 
+    </session-config>
+
+</web-app>

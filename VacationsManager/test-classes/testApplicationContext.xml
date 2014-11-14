@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+            http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+	<!-- Configure Spring's to get properties from files  -->
+	<bean id="properties"
+		class="org.springframework.context.support.PropertySourcesPlaceholderConfigurer">
+		<property name="locations">
+			<list>
+				<value>classpath:db.properties</value>
+				<value>classpath:mail.properties</value>
+				<value>classpath:vacations.properties</value>
+			</list>
+		</property>
+		<!-- <property name="ignoreUnresolvablePlaceholders" value="true" /> -->
+	</bean>
+
+</beans>
