@@ -12,7 +12,7 @@ public class Main {
 		myQueue.add(6);
 		myQueue.add(3);
 		
-		//dd
+		//dd initial
 		
 		//System.out.println(myQueue.getQueueValue());
 		//System.out.println(myQueue.getStackValue());
