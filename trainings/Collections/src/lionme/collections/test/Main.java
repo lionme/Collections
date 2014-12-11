@@ -11,10 +11,7 @@ public class Main {
 		myQueue.add(3);
 		myQueue.add(6);
 		myQueue.add(3);
-		
-		//dd initial
-		
-		//commit other branch for mewrger22
+		//index1
 		
 		//System.out.println(myQueue.getQueueValue());
 		//System.out.println(myQueue.getStackValue());

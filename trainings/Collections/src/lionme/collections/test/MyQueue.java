@@ -1,5 +1,5 @@
 package lionme.collections.test;
-
+//index2
 
 public class MyQueue<T>  {
 	private Elem<T> header;
